@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: "edge"
+  config:
+    import: "configserver:http://localhost:8071/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      access: unrestricted
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: "gatewayserver"
+    description: "Wallet Gateway Server Application"
+    version: "1.0.0"

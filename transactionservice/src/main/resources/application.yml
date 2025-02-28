@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: "transactions"
+  config:
+    import: "configserver:http://localhost:8071/"
+
+
+
+
