@@ -1,5 +1,31 @@
 spring:
   application:
     name: "users"
-  config:
-    import: "configserver:http://localhost:8071/"
+#  config:
+#    import: "configserver:http://localhost:8071/"
+  datasource:
+    url: jdbc:postgresql://localhost:5432/wallet
+    username: root
+    password: Admin@123
+    driver-class-name: org.postgresql.Driver
+
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8081
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
