@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wallet</groupId>
-	<artifactId>edgeserver</artifactId>
+	<artifactId>edge-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>edgeserver</name>
 	<description>Demo project for Spring Boot</description>
