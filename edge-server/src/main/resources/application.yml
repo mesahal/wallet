@@ -9,11 +9,6 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-#      routes:
-#        - id: users
-#          uri: lb://users
-#          predicates:
-#           - Path=/api/v1/user
 
 server:
   port: 8000
@@ -44,3 +39,6 @@ info:
     name: "gatewayserver"
     description: "Wallet Gateway Server Application"
     version: "1.0.0"
+
+jwt:
+  secret: 16f7e412ee66030c3bf769281a076955f595be7479189c4e5ab1f90d2ae3c82e0c5170afcceba1e0f638648c01a468ff82b0723a970011f7fc0dd1a4ba70b0e1

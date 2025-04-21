@@ -4,7 +4,7 @@ spring:
 #  config:
 #    import: "configserver:http://localhost:8071/"
   datasource:
-    url: jdbc:postgresql://localhost:5432/wallet
+    url: jdbc:postgresql://localhost:5432/wallet_user
     username: root
     password: Admin@123
     driver-class-name: org.postgresql.Driver
@@ -29,3 +29,6 @@ eureka:
     registerWithEureka: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+jwt:
+  secret: 16f7e412ee66030c3bf769281a076955f595be7479189c4e5ab1f90d2ae3c82e0c5170afcceba1e0f638648c01a468ff82b0723a970011f7fc0dd1a4ba70b0e1

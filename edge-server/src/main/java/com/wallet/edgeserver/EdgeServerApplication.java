@@ -6,22 +6,13 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDateTime;
+
 @SpringBootApplication
-public class EdgeserverApplication {
+public class EdgeServerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EdgeserverApplication.class, args);
-	}
-
-	@Bean
-	public RouteLocator walletRouteConfig(RouteLocatorBuilder builder) {
-		return builder.routes()
-				.route(p-> p
-						.path("/wallet/**")
-						.filters(f-> f
-								.rewritePath("/wallet/(?<segment>.*)","/${segment}"))
-						.uri("lb://USERS"))
-				.build();
+		SpringApplication.run(EdgeServerApplication.class, args);
 	}
 
 }

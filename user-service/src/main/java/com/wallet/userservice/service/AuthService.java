@@ -31,7 +31,6 @@ public class AuthService {
     public String verify(Customer customer) {
         Authentication authentication =  authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(customer.getUsername(), customer.getPassword()));
-
         if(authentication.isAuthenticated()) {
             return jwtService.generateToken(customer.getUsername());
         }

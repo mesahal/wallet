@@ -32,7 +32,7 @@ public class CustomerResource {
         return (CsrfToken) request.getAttribute("_csrf");
     }
 
-    @GetMapping("/users")
+    @GetMapping("/customers")
     public List<Customer>  getUsers() {
         return customerRepository.findAll();
     }
