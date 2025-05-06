@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wallet</groupId>
-	<artifactId>discoveryserver</artifactId>
+	<artifactId>discovery-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>discoveryserver</name>
 	<description>Demo project for Spring Boot</description>
