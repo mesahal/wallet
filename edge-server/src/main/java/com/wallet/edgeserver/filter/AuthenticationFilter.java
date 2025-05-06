@@ -45,6 +45,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                 }
 
                 String token = authHeader.substring(7);
+                ServerHttpRequest request = exchange.getRequest(); // initialize with default request
 
                 try {
                     jwtUtil.validateToken(token,jwtSecret);
@@ -53,14 +54,16 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                     String jsonCurrentUserContext = toJson(currentUserContext);
                     String base64CurentUserContext = SerializationUtils.toBase64(jsonCurrentUserContext.getBytes(StandardCharsets.UTF_8));
 
-                    ServerHttpRequest request = exchange.getRequest().mutate()
+                    request = exchange.getRequest().mutate()
                             .header("X-USER_ID",base64CurentUserContext)
                             .build();
                 } catch (Exception e) {
                     return exchange.getResponse().setComplete();
                 }
+                return chain.filter(exchange.mutate().request(request).build());
+
             }
-            return chain.filter(exchange.mutate().request(exchange.getRequest()).build());
+            return chain.filter(exchange);
         };
     }
 
@@ -69,7 +72,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
             String userIdentity = jwtUtil.extractClaimByKey(token, jwtSecret, JwtClaimsEnum.USER_IDENTITY.getClaim(), String.class);
 
             CurrentUserContext currentUserContext = new CurrentUserContext();
-            currentUserContext.setUserIdentity(userIdentity);
+            currentUserContext.setUsername(userIdentity);
             return currentUserContext;
         } catch (Exception e) {
             e.printStackTrace();
