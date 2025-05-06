@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum JwtClaimsEnum {
-    USER_IDENTITY("userIdentity");
+    USER_IDENTITY("username");
     private String claim;
 }
