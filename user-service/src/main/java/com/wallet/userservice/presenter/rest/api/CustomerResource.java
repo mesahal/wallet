@@ -22,6 +22,9 @@ public class CustomerResource {
     @Autowired
     private AuthService authService;
 
+    @Autowired
+    private HttpServletRequest request;
+
     @GetMapping("")
     public String addMoney(HttpServletRequest request) {
         return "success " + request.getSession().getId();
@@ -34,6 +37,11 @@ public class CustomerResource {
 
     @GetMapping("/customers")
     public List<Customer>  getUsers() {
+        String encodedUserContext = request.getHeader("X-USER_ID");
+
+        byte[] decodedBytes = java.util.Base64.getDecoder().decode(encodedUserContext);
+        String jsonContext = new String(decodedBytes, java.nio.charset.StandardCharsets.UTF_8);
+
         return customerRepository.findAll();
     }
 }
