@@ -7,29 +7,33 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="edgeserver" />
-        <module name="discoveryserver" />
-        <module name="configserver" />
+        <module name="config-server" />
+        <module name="discovery-server" />
+        <module name="notification-service" />
+        <module name="consumer" />
+        <module name="edge-server" />
       </profile>
-      <profile name="Annotation profile for transactionservice" enabled="true">
+      <profile name="Annotation profile for TransactionService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
-        <module name="transactionservice" />
-        <module name="userservice" />
+        <module name="transaction-service" />
+        <module name="user-service" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="configserver" options="-parameters" />
-      <module name="discoveryserver" options="-parameters" />
-      <module name="edgeserver" options="-parameters" />
-      <module name="transactionservice" options="-parameters" />
-      <module name="userservice" options="-parameters" />
+      <module name="config-server" options="-parameters" />
+      <module name="consumer" options="-parameters" />
+      <module name="discovery-server" options="-parameters" />
+      <module name="edge-server" options="-parameters" />
+      <module name="notification-service" options="-parameters" />
+      <module name="transaction-service" options="-parameters" />
+      <module name="user-service" options="-parameters" />
     </option>
   </component>
 </project>

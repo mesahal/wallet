@@ -1,4 +1,4 @@
-package com.wallet.consumer.dto;
+package com.wallet.notificationservice.dto;
 
 
 import lombok.Data;
@@ -9,6 +9,7 @@ public class Customer {
     private String name;
     private String email;
     private String phoneNumber;
+
 
     @Override
     public String toString() {
