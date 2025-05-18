@@ -8,6 +8,7 @@ import com.wallet.edgeserver.exceptions.MissingAuthorizationHeaderException;
 import com.wallet.edgeserver.util.JwtUtil;
 import com.wallet.edgeserver.util.SerializationUtils;
 import com.wallet.edgeserver.validator.RouteValidator;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.apache.http.HttpHeaders;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -57,7 +58,10 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                     request = exchange.getRequest().mutate()
                             .header("X-USER_ID",base64CurentUserContext)
                             .build();
-                } catch (Exception e) {
+                } catch (ExpiredJwtException e) {
+                    throw new RuntimeException("Expired JWT token");
+                }
+                catch (Exception e) {
                     return exchange.getResponse().setComplete();
                 }
                 return chain.filter(exchange.mutate().request(request).build());
