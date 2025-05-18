@@ -6,27 +6,27 @@ import com.wallet.transactionservice.domain.entity.TransactionHistory;
 import com.wallet.transactionservice.domain.enums.TransactionType;
 import com.wallet.transactionservice.domain.request.AddMoneyRequest;
 import com.wallet.transactionservice.domain.request.TransferMoneyRequest;
+import com.wallet.transactionservice.domain.response.TransactionHistoryResponse;
 import com.wallet.transactionservice.domain.response.TransactionResponse;
 import com.wallet.transactionservice.repository.AccountRepository;
 import com.wallet.transactionservice.repository.TransactionHistoryRepository;
 import com.wallet.transactionservice.service.TransactionService;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
 
     private final AccountRepository accountRepository;
     private final TransactionHistoryRepository transactionHistoryRepository;
-
-    public TransactionServiceImpl(AccountRepository accountRepository, TransactionHistoryRepository transactionHistoryRepository) {
-        this.accountRepository = accountRepository;
-        this.transactionHistoryRepository = transactionHistoryRepository;
-    }
 
     @Transactional
     @Override
@@ -47,7 +47,7 @@ public class TransactionServiceImpl implements TransactionService {
         TransactionHistory transactionHistory = new TransactionHistory();
         transactionHistory.setReceiverUsername(request.getUsername());
         transactionHistory.setAmount(request.getAmount());
-        transactionHistory.setType(TransactionType.ADD_MONEY);
+        transactionHistory.setType(TransactionType.ADD_MONEY.getCode());
         transactionHistory.setCreatedAt(LocalDateTime.now());
         transactionHistory.setSenderUsername("SYSTEM");
         transactionHistory.setTransactionId(getTransactionId());
@@ -88,7 +88,7 @@ public class TransactionServiceImpl implements TransactionService {
         TransactionHistory transactionHistory = new TransactionHistory();
         transactionHistory.setReceiverUsername(request.getReceiverUsername());
         transactionHistory.setAmount(request.getAmount());
-        transactionHistory.setType(TransactionType.TRANSFER_MONEY);
+        transactionHistory.setType(TransactionType.TRANSFER_MONEY.getCode());
         transactionHistory.setCreatedAt(LocalDateTime.now());
         transactionHistory.setSenderUsername(request.getSenderUsername());
         transactionHistory.setTransactionId(getTransactionId());
@@ -102,8 +102,28 @@ public class TransactionServiceImpl implements TransactionService {
         return new ApiResponse<>("200","Transferred money successfully",transactionResponse);
     }
 
+    @Override
+    public List<TransactionHistoryResponse> transactionHistory(String username) {
+        List<TransactionHistory> transactionHistoryList = transactionHistoryRepository.findAllByReceiverUsernameOrSenderUsername(username, username);
+
+        return transactionHistoryList.stream()
+                .map(this::toTransactionHistoryResponse)
+                .collect(Collectors.toList());
+    }
+
     private String getTransactionId(){
         return "TXN-" + RandomStringUtils.randomAlphanumeric(12).toUpperCase();
+    }
+    
+    private TransactionHistoryResponse toTransactionHistoryResponse(TransactionHistory transactionHistory){
+        return TransactionHistoryResponse.builder()
+                .transactionId(transactionHistory.getTransactionId())
+                .amount(transactionHistory.getAmount())
+                .type(TransactionType.getTransactionType(transactionHistory.getType()))
+                .createdAt(transactionHistory.getCreatedAt())
+                .senderUsername(transactionHistory.getSenderUsername())
+                .receiverUsername(transactionHistory.getReceiverUsername())
+                .build();
     }
 }
 

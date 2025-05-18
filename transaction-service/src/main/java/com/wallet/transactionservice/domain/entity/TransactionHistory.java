@@ -21,6 +21,6 @@ public class TransactionHistory {
     private String receiverUsername;
     private BigDecimal amount;
     private LocalDateTime createdAt;
-    private TransactionType type;
+    private Long type;
 
 }
