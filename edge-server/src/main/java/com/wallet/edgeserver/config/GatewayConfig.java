@@ -28,6 +28,13 @@ public class GatewayConfig {
                                 .rewritePath("/wallet/(?<segment>.*)","/${segment}")
                                 .addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
                         .uri("lb://TRANSACTIONS"))
+                .route(p-> p
+                        .path("/wallet/api/v1/chargeandfee/**")
+                        .filters(f-> f
+                                .filter(filter.apply(new AuthenticationFilter.Config()))
+                                .rewritePath("/wallet/(?<segment>.*)","/${segment}")
+                                .addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+                        .uri("lb://CHARGE-AND-FEE"))
                 .build();
     }
 }
