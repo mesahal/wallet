@@ -1,4 +1,4 @@
-package com.wallet.transactionservice.domain.request;
+package com.wallet.transaction.domain.request;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package com.wallet.transactionservice.domain.enums;
+package com.wallet.transaction.domain.enums;
 
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.wallet.transactionservice.domain.response;
+package com.wallet.transaction.domain.response;
 
 import lombok.Builder;
 import lombok.Data;

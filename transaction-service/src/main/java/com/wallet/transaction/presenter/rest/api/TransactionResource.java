@@ -1,12 +1,12 @@
-package com.wallet.transactionservice.presenter.rest.api;
+package com.wallet.transaction.presenter.rest.api;
 
-import com.wallet.transactionservice.common.AppUtils;
-import com.wallet.transactionservice.domain.common.ApiResponse;
-import com.wallet.transactionservice.domain.request.AddMoneyRequest;
-import com.wallet.transactionservice.domain.request.TransferMoneyRequest;
-import com.wallet.transactionservice.domain.response.TransactionHistoryResponse;
-import com.wallet.transactionservice.domain.response.TransactionResponse;
-import com.wallet.transactionservice.service.TransactionService;
+import com.wallet.transaction.common.AppUtils;
+import com.wallet.transaction.domain.common.ApiResponse;
+import com.wallet.transaction.domain.request.AddMoneyRequest;
+import com.wallet.transaction.domain.request.TransferMoneyRequest;
+import com.wallet.transaction.domain.response.TransactionHistoryResponse;
+import com.wallet.transaction.domain.response.TransactionResponse;
+import com.wallet.transaction.service.TransactionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

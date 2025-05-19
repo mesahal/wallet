@@ -1,4 +1,4 @@
-package com.wallet.transactionservice;
+package com.wallet.transaction;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

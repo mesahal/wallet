@@ -1,7 +1,7 @@
-package com.wallet.userservice.service.impl;
-import com.wallet.userservice.domain.entity.Customer;
-import com.wallet.userservice.domain.entity.UserPrincipal;
-import com.wallet.userservice.repository.CustomerRepository;
+package com.wallet.user.service.impl;
+import com.wallet.user.domain.entity.Customer;
+import com.wallet.user.domain.entity.UserPrincipal;
+import com.wallet.user.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
