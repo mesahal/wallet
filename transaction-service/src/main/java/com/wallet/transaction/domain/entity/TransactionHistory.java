@@ -1,16 +1,18 @@
 package com.wallet.transaction.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Builder
 @Entity
 @Getter
 @Setter
 @Table(name = "transaction_history")
+@RequiredArgsConstructor
+@AllArgsConstructor
 public class TransactionHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

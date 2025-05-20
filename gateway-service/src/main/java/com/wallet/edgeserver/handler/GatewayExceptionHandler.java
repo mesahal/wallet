@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler extends BaseExceptionHandler {
+public class GatewayExceptionHandler extends BaseExceptionHandler {
 
     @ExceptionHandler(MissingAuthorizationHeaderException.class)
     public ResponseEntity<ApiResponse<Object>> handleException(MissingAuthorizationHeaderException ex) {

@@ -13,5 +13,5 @@ public interface TransactionService {
 
     ApiResponse<TransactionResponse> transferMoney(TransferMoneyRequest request);
 
-    List<TransactionHistoryResponse> transactionHistory(String username);
+    ApiResponse<List<TransactionHistoryResponse>> transactionHistory(String username);
 }

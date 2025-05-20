@@ -35,8 +35,8 @@ public class TransactionResource {
     }
 
     @GetMapping("/transaction-history/{username}")
-    public ApiResponse<List<TransactionHistoryResponse>> getTransactionById(@PathVariable String username) {
-        List<TransactionHistoryResponse> response = transactionService.transactionHistory(username);
-        return new ApiResponse<>("200","OK",response);
+    public ResponseEntity<ApiResponse<List<TransactionHistoryResponse>>> getTransactionById(@PathVariable String username) {
+        ApiResponse<List<TransactionHistoryResponse>> response = transactionService.transactionHistory(username);
+        return ResponseEntity.ok(response);
     }
 }
